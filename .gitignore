@@ -1,0 +1,19 @@
+# Ignorar archivos y directorios específicos de Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.vssscc
+*.vspscc
+
+# Ignorar binarios y archivos generados
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Ignorar paquetes
+packages/
+
