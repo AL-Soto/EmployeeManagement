@@ -61,8 +61,41 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+            // Function validar form
+            function validateForm() {
+                let isValid = true;
+                $('#name-error').text('');
+                $('#position-error').text('');
+                $('#office-error').text('');
+                $('#salary-error').text('');
+
+                if ($('#Name').val() === '') {
+                    $('#name-error').text('Name is required.');
+                    isValid = false;
+                }
+                if ($('#Position').val() === '') {
+                    $('#position-error').text('Position is required.');
+                    isValid = false;
+                }
+                if ($('#Office').val() === '') {
+                    $('#office-error').text('Office is required.');
+                    isValid = false;
+                }
+                // Elimina las comas del valor del salario y valida
+                let salary = $('#Salary').val().replace(/,/g, '');
+                if (salary === '' || isNaN(salary)) {
+                    $('#salary-error').text('Valid salary is required.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
             $('#update-form').on('submit', function (e) {
                 e.preventDefault();
+                if (!validateForm()) {
+                    return;
+                }
                 $.ajax({
                     url: '@Url.Action("UpdateEmployee", "Employee")',
                     type: 'POST',
