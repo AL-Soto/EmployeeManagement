@@ -11,7 +11,6 @@ namespace EmployeeManagement.Models
         public DataBaseContext() : base("name=MyDatabaseConnectionString")
         {
         }
-
         public DbSet<Employee> Employees { get; set; }
     }
 }

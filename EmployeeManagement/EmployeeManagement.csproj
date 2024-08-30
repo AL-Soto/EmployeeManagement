@@ -195,7 +195,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employee\AddEmployee.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\UpdateEmployee.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
   </ItemGroup>

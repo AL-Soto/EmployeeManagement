@@ -8,10 +8,7 @@
 <h2>Agregar Empleado</h2>
 
 <form id="add-employee-form" method="post">
-    @*@Html.AntiForgeryToken()*@
-
     <div class="form-horizontal">
-        
         <hr />
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -69,7 +66,6 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Table rows will be dynamically added here -->
     </tbody>
 </table>
 
@@ -105,7 +101,7 @@
                 return isValid;
             }
 
-            // Function to add employee row to table
+            // Funion para agregar empleado a la tabla 
             function addEmployeeRow(employee) {
                 $('#employee-table tbody').append(`
                     <tr>
@@ -131,12 +127,12 @@
                     data: $(this).serialize(),
                     success: function (response) {
                         if (response.success) {
-                            // Add employee row to table
+                            // agregar employee a la tabla
                             addEmployeeRow(response.employee);
                             // Optionally clear form fields
                             $('#add-employee-form')[0].reset();
                             // Optionally show a success message
-                            alert('Employee Agregado con éxito!');
+                            alert('Empleado Agregado con éxito!');
                         } else {
                             // Display validation errors
                             alert('Errors: ' + response.errors.join(', '));

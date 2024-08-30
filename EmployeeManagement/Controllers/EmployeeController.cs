@@ -13,8 +13,6 @@ namespace EmployeeManagement.Controllers
     public class EmployeeController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
-
-        
         public ActionResult Index()
         {
             var employees = db.Employees.ToList();
@@ -35,7 +33,6 @@ namespace EmployeeManagement.Controllers
             return View(employee);
         }
 
-
         // GET: Employee/GetEmployees
         [HttpGet]
         public JsonResult GetEmployees()
@@ -44,10 +41,8 @@ namespace EmployeeManagement.Controllers
             return Json(employees, JsonRequestBehavior.AllowGet);
         }
 
-
         // POST: Employee/AddEmployee
         [HttpPost]
-
         public JsonResult AddEmployee([Bind(Include = "Id,Name,Position,Office,Salary")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -61,21 +56,19 @@ namespace EmployeeManagement.Controllers
             return Json(new { success = false, errors = errors });
         }
 
-
-
         // POST: Employee/UpdateEmployee
         [HttpPost]
-
         public JsonResult UpdateEmployee([Bind(Include = "Id,Name,Position,Office,Salary")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return Json(new { success = true, message = "Employee updated successfully!" });
+                return Json(new { success = true, message = "Empleado Actualizado Exitosamente!" });
             }
-            return Json(new { success = false, message = "Failed to update employee." });
+            return Json(new { success = false, message = "Fallo al Actualizar empleado." });
         }
+
         // POST: Employee/DeleteEmployee
         [HttpPost]
         public JsonResult DeleteEmployee(int id)
@@ -90,14 +83,13 @@ namespace EmployeeManagement.Controllers
 
                 db.Employees.Remove(employee);
                 db.SaveChanges();
-                return Json(new { success = true, message = "Employee deleted successfully." });
+                return Json(new { success = true, message = "Empleado  Eliminado Exitosamente." });
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
