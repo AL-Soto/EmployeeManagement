@@ -14,10 +14,12 @@ namespace EmployeeManagement.Controllers
     {
         private DataBaseContext db = new DataBaseContext();
 
-        // GET: Employees
+        
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var employees = db.Employees.ToList();
+            return View(employees);
+            //return View(db.Employees.ToList());
         }
         public ActionResult AddEmployee()
         {
@@ -95,11 +97,6 @@ namespace EmployeeManagement.Controllers
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
             }
         }
-
-
-
-
-
 
         protected override void Dispose(bool disposing)
         {

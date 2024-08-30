@@ -4,14 +4,12 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/Styles/styles.css" />
 
-<h2>Edit Employee</h2>
+<h2>Actualizar Empleado</h2>
 
 <form id="update-form" method="post">
-    @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
-        <h4>Employee</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -48,14 +46,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a href="@Url.Action("Index", "Employee")" class="btn btn-secondary">Back to List</a>
+        <div class="form-group full-width">
+            <div class="btn-container">
+                <input type="submit" value="Actualizar" class="btn btn-primary" />
+                <a href="@Url.Action("Index", "Employee")" class="btn btn-secondary">Regresar</a>
             </div>
         </div>
     </div>
 </form>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

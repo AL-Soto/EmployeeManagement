@@ -4,8 +4,9 @@
         ViewBag.Title = "Index";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
+    <link rel="stylesheet" href="~/Styles/styles.css" />
 
-    <h2>Index</h2>
+    <h2>Lista De Empleados</h2>
 
     <p>
         @Html.ActionLink("Agregar Nuevo Empleado", "AddEmployee")
@@ -42,43 +43,43 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-$(document).ready(function() {
-    // Crear nuevo empleado
-    $('#create-new').on('click', function(e) {
-        e.preventDefault();
-        window.location.href = '@Url.Action("AddEmployee", "Employee")';
-    });
+    $(document).ready(function() {
+        // Crear nuevo empleado
+        $('#create-new').on('click', function(e) {
+            e.preventDefault();
+            window.location.href = '@Url.Action("AddEmployee", "Employee")';
+        });
 
-    // Editar empleado
-    $('.edit-link').on('click', function(e) {
-        e.preventDefault();
-        var id = $(this).data('id');
-        window.location.href = '@Url.Action("UpdateEmployee", "Employee")' + '/' + id;
-    });
+        // Editar empleado
+        $('.edit-link').on('click', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            window.location.href = '@Url.Action("UpdateEmployee", "Employee")' + '/' + id;
+        });
 
-    // Eliminar empleado
-   $('.delete-link').on('click', function(e) {
-        e.preventDefault();
-        var id = $(this).data('id');
-        if (confirm("Estás seguro que deseas eliminar este empleado?")) {
-            $.ajax({
-                url: '@Url.Action("DeleteEmployee", "Employee")',
-                type: 'POST',
-                data: JSON.stringify({ id: id }),
-                contentType: 'application/json; charset=utf-8',
-                success: function(response) {
-                    if (response.success) {
-                        $('tr[data-id="' + id + '"]').remove();
-                    } else {
-                        alert(response.message);
+        // Eliminar empleado
+       $('.delete-link').on('click', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            if (confirm("Estás seguro que deseas eliminar este empleado?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteEmployee", "Employee")',
+                    type: 'POST',
+                    data: JSON.stringify({ id: id }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(response) {
+                        if (response.success) {
+                            $('tr[data-id="' + id + '"]').remove();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('An error occurred: ' + xhr.responseText);
                     }
-                },
-                error: function(xhr, status, error) {
-                    alert('An error occurred: ' + xhr.responseText);
-                }
-            });
-        }
+                });
+            }
+        });
     });
-});
     </script>
 

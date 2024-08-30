@@ -4,14 +4,14 @@
     ViewBag.Title = "Add Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Add Employee</h2>
+<link rel="stylesheet" href="~/Styles/styles.css" />
+<h2>Agregar Empleado</h2>
 
 <form id="add-employee-form" method="post">
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
 
     <div class="form-horizontal">
-        <h4>Employee</h4>
+        
         <hr />
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -47,7 +47,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-primary">Agregar Empleado</button>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a href="@Url.Action("Index", "Employee")" class="btn btn-secondary">Regresar</a>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -154,4 +158,3 @@
     </script>
 }
 
-}

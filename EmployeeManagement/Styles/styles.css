@@ -1,0 +1,191 @@
+﻿/*--------------------Estilos para el Index-------------------------- */
+/* Estilo para el título h2 */
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+}
+
+/* Estilo para el enlace dentro de p */
+p {
+    text-align: center;
+}
+
+p a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p a:hover {
+    background-color: #45A049;
+    transform: translateY(-2px);
+}
+
+p a:active {
+    transform: translateY(1px);
+}
+
+/* Estilos generales para los enlaces */
+a.edit-link, a.delete-link {
+    text-decoration: none;
+    padding: 5px 10px; /* Reducir el padding */
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px; /* Reducir el tamaño de la fuente */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: 8px; /* Espaciado vertical */
+    height: 30px; /* Altura más pequeña */
+    line-height: 20px; /* Para centrar verticalmente el texto */
+}
+
+/* Estilo para el botón "Editar" */
+a.edit-link {
+    background-color: #2196f3; /* Verde */
+    color: white;
+}
+
+    a.edit-link:hover {
+        background-color: #1976D2;
+        transform: translateY(-2px);
+    }
+
+/* Estilo para el botón "Eliminar" */
+a.delete-link {
+    background-color: #F44336; /* Rojo */
+    color: white;
+    margin-left: 8px; /* Reducir la separación horizontal */
+}
+
+    a.delete-link:hover {
+        background-color: #E53935;
+        transform: translateY(-2px);
+    }
+
+    /* Estilo para mejorar la visualización en dispositivos táctiles */
+    a.edit-link:active, a.delete-link:active {
+        transform: translateY(1px);
+    }
+/*-------------------- FIN estilos para el Index-------------------------- */
+
+/* Estilos generales del formulario */
+#add-employee-form, #update-form {
+    max-width: 600px;
+    margin: 0 auto; /* Centra el formulario en la página */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor para los grupos de formularios */
+.form-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilo para cada grupo de formulario */
+.form-group {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+/* Estilo para las etiquetas */
+.control-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* Efecto de enfoque en los campos de entrada */
+    .form-control:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        outline: none;
+    }
+
+/* Estilo para los mensajes de error */
+.text-danger {
+    color: #F44336;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Estilo para los botones */
+.btn-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+/* Ajuste para los botones dentro de los formularios */
+#add-employee-form .btn-container, #update-form .btn-container {
+    width: 100%;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #45A049;
+        transform: translateY(-2px);
+    }
+
+.btn-secondary {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+}
+
+    .btn-secondary:hover {
+        background-color: #1976D2;
+        transform: translateY(-2px);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
