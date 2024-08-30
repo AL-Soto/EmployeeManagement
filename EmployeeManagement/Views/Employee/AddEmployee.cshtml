@@ -1,0 +1,157 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Add Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Employee</h2>
+
+<form id="add-employee-form" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Employee</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="text-danger" id="name-error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="text-danger" id="position-error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Office, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Office, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="text-danger" id="office-error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                <span class="text-danger" id="salary-error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary">Agregar Empleado</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Tabla para mostrar los employees -->
+<h3>Employee List</h3>
+<table id="employee-table" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Table rows will be dynamically added here -->
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function para validar el form
+            function validateForm() {
+                let isValid = true;
+                $('#name-error').text('');
+                $('#position-error').text('');
+                $('#office-error').text('');
+                $('#salary-error').text('');
+
+                if ($('#Name').val() === '') {
+                    $('#name-error').text('Name is required.');
+                    isValid = false;
+                }
+                if ($('#Position').val() === '') {
+                    $('#position-error').text('Position is required.');
+                    isValid = false;
+                }
+                if ($('#Office').val() === '') {
+                    $('#office-error').text('Office is required.');
+                    isValid = false;
+                }
+                if ($('#Salary').val() === '' || isNaN($('#Salary').val())) {
+                    $('#salary-error').text('Valid salary is required.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Function to add employee row to table
+            function addEmployeeRow(employee) {
+                $('#employee-table tbody').append(`
+                    <tr>
+                        <td>${employee.Name}</td>
+                        <td>${employee.Position}</td>
+                        <td>${employee.Office}</td>
+                        <td>${employee.Salary}</td>
+                    </tr>
+                `);
+            }
+
+            // Handle form submission
+            $('#add-employee-form').submit(function (event) {
+                event.preventDefault();
+
+                if (!validateForm()) {
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("AddEmployee", "Employee")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            // Add employee row to table
+                            addEmployeeRow(response.employee);
+                            // Optionally clear form fields
+                            $('#add-employee-form')[0].reset();
+                            // Optionally show a success message
+                            alert('Employee Agregado con éxito!');
+                        } else {
+                            // Display validation errors
+                            alert('Errors: ' + response.errors.join(', '));
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('An error occurred: ' + error);
+                    }
+                });
+            });
+
+            // Load employees on page load
+            $.get('@Url.Action("GetEmployees", "Employee")', function (employees) {
+                $.each(employees, function (index, employee) {
+                    addEmployeeRow(employee);
+                });
+            });
+        });
+    </script>
+}
+
+}
